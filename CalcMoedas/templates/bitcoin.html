@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock title %}
+
+
+
+{% block body %}
+<div class="container text-center">
+    <h1>Conversor de Moedas: Bitcoin</h1>
+    <form method="POST" action="" class="border p-4 mt-2">
+        {{ calculo_form.csrf_token }}
+        <div class="form-group col-md-3 mx-auto">
+            <h5>{{calculo_form.valor.label}}</h5>
+            {{ calculo_form.valor(class="form-control", value=calculo_form.valor.data if calculo_form.valor.data else '') }}
+        </div>
+        {{calculo_form.botao_calcular(class="btn btn-primary border mt-3")}}
+
+        {% if resultado is not none %}
+            <h2>Resultado da conversão BTC: {{ "{:.7f}".format(resultado) }}</h2>
+        {% endif %}
+    
+{% endblock body %}
